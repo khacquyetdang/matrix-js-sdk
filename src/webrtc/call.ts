@@ -1443,6 +1443,31 @@ function getUserMediaVideoContraints(callType: CallType | null) {
   }
 }
 
+let audioOutput: string;
+let audioInput: string;
+let videoInput: string;
+/**
+ * Set an audio output device to use for MatrixCalls
+ * @function
+ * @param {string=} deviceId the identifier for the device
+ * undefined treated as unset
+ */
+export function setAudioOutput(deviceId: string) { audioOutput = deviceId; }
+/**
+ * Set an audio input device to use for MatrixCalls
+ * @function
+ * @param {string=} deviceId the identifier for the device
+ * undefined treated as unset
+ */
+export function setAudioInput(deviceId: string) { audioInput = deviceId; }
+/**
+ * Set a video input device to use for MatrixCalls
+ * @function
+ * @param {string=} deviceId the identifier for the device
+ * undefined treated as unset
+ */
+export function setVideoInput(deviceId: string) { videoInput = deviceId; }
+
 /**
  * Create a new Matrix call for the browser.
  * @param {MatrixClient} client The client instance to use.
