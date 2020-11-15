@@ -53,6 +53,7 @@
     "content-type": "^1.0.4",
     "loglevel": "^1.7.0",
     "qs": "^6.9.4",
+    "react-native-webrtc": "^1.84.1",
     "request": "^2.88.2",
     "unhomoglyph": "^1.0.6"
   },
