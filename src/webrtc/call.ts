@@ -409,7 +409,7 @@ export class MatrixCall extends EventEmitter {
       );
       return;
     }
-
+    this.remoteStream = this.peerConn.getRemoteStreams()[0];
     this.type = this.remoteStream.getTracks().some((t) => t.kind === 'video')
       ? CallType.Video
       : CallType.Voice;
