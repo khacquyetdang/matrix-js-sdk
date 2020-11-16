@@ -1429,18 +1429,24 @@ function setTracksEnabled(tracks: Array<MediaStreamTrack>, enabled: boolean) {
 }
 
 function getUserMediaVideoContraints(callType: CallType | null) {
+    if (callType){
     switch (callType) {
         case CallType.Voice:
-            return {
-        audio: true,
-        video: false,
-            };
+          return {
+            audio: true,
+            video: false,
+          };
         case CallType.Video:
-            return {
-        audio: false,
-        video: false,
-            };
+          return {
+            audio: false,
+            video: false,
+          };
     }
+  }
+  return {
+    audio: true,
+    video: false,
+  };
 }
 
 let audioOutput: string;
