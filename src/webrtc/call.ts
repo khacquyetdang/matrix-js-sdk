@@ -35,7 +35,7 @@ import {
     //ConfigurationParamWithUrl,
     //EventOnConnectionStateChange,
     MediaStreamConstraints,
-    //EventOnAddStream,
+    EventOnAddStream,
     MediaStreamTrack,
     RTCIceCandidate,
     EventOnCandidate,
@@ -1411,6 +1411,9 @@ export class MatrixCall extends EventEmitter {
       // @TODO pc.addEventListener('track', this.onTrack);
       pc.onnegotiationneeded = () => {
           this.onNegotiationNeeded();
+      };
+      pc.onaddstream = (event: EventOnAddStream) => {
+          this.remoteStream = event.stream;
       };
       return pc;
   }
