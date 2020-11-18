@@ -375,8 +375,8 @@ export class MatrixCall extends EventEmitter {
    * @param {MatrixEvent} event The m.call.invite event
    */
   async initWithInvite(event: MatrixEvent) {
-    logger.debug('MyMatrixFailed initWithInvite to set remote description', event);
-    this.msg = event.getContent();
+      logger.debug('MyMatrixFailed initWithInvite to set remote description', event);
+      this.msg = event.getContent();
       this.peerConn = this.createPeerConnection();
       try {
           await this.peerConn?.setRemoteDescription(this.msg.offer);
@@ -660,7 +660,7 @@ export class MatrixCall extends EventEmitter {
       this.peerConn = this.createPeerConnection();
 
       this.peerConn.addStream(stream);
-        
+
       /*
     for (const audioTrack of stream.getAudioTracks()) {
       logger.info('MyMatrixAdding audio track with id ' + audioTrack.id);
@@ -1409,8 +1409,9 @@ export class MatrixCall extends EventEmitter {
       pc.onicecandidate = this.gotLocalIceCandidate;
       pc.onicegatheringstatechange = this.onIceGatheringStateChange;
       // @TODO pc.addEventListener('track', this.onTrack);
-      pc.onnegotiationneeded = this.onNegotiationNeeded();
-
+      pc.onnegotiationneeded = () => {
+          this.onNegotiationNeeded();
+      };
       return pc;
   }
 
@@ -1428,24 +1429,24 @@ function setTracksEnabled(tracks: Array<MediaStreamTrack>, enabled: boolean) {
 }
 
 function getUserMediaVideoContraints(callType: CallType | null) {
-    if (callType){
-    switch (callType) {
-        case CallType.Voice:
-          return {
+    if (callType) {
+        switch (callType) {
+            case CallType.Voice:
+                return {
             audio: true,
             video: false,
-          };
-        case CallType.Video:
-          return {
+                };
+            case CallType.Video:
+                return {
             audio: false,
             video: false,
-          };
+                };
+        }
     }
-  }
-  return {
+    return {
     audio: true,
     video: false,
-  };
+    };
 }
 
 let audioOutput: string;

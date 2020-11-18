@@ -16,3 +16,7 @@ out
 # version file and tarball created by `npm pack` / `yarn pack`
 /git-revision.txt
 /matrix-js-sdk-*.tgz
+.idea/matrix-js-sdk.iml
+.idea/modules.xml
+.idea/workspace.xml
+.idea/vcs.xml
